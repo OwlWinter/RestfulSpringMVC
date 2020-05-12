@@ -50,7 +50,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 接口文档：    
 新增学员    
-请求地址：post  /disciple
+请求地址：(post)  /disciple
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
 |student_name	|名字	|string|		|是|
@@ -72,7 +72,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 ****
 
 修改状态：  
-请求地址：put /disciple
+请求地址：(put)  /disciple
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
 |id	|主键	|int|	|	是|
@@ -94,7 +94,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 ****
 
 查看学员信息：  
-请求地址：get /disciple/{id}
+请求地址：(get)  /disciple/{id}
 返回参数：
 |字段	|说明	|类型	|备注	|是否必填|
 |---|---|---|---|---|
@@ -118,7 +118,7 @@ data
 ****
 
 删除学员：     
-请求地址：delete /disicple/{id}    
+请求地址：(delete)  /disicple/{id}    
 返回参数：
 |字段	|说明	|类型	|备注	|是否必填|
 |---|---|---|---|---|
