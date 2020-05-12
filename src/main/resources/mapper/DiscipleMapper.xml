@@ -16,8 +16,6 @@
         <result property="come_from" column="come_from" javaType="String" jdbcType="VARCHAR"></result>
         <result property="graduated_school" column="graduated_school" javaType="String" jdbcType="VARCHAR"></result>
         <result property="daily_report" column="daily_report" javaType="String" jdbcType="VARCHAR"></result>
-<!--        <result property="create_time" column="create_time" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"></result>
-        <result property="update_time" column="update_time" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"></result>-->
     </resultMap>
 
     <select id="query" parameterType="cn.mogeek.model.Disciple" resultMap="discipleMap">

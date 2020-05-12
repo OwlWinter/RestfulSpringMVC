@@ -1,8 +1,9 @@
 package cn.mogeek.model;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
 
-public class Disciple implements Cloneable {
+
+public class Disciple implements Cloneable , Serializable {
 
     /**
      * 姓名 主修方向 毕业院校 师兄 来源 日报 目标
@@ -14,8 +15,6 @@ public class Disciple implements Cloneable {
      * id 为主键
      */
     private Integer id, qq_num, student_id;
-
-    private Timestamp create_time, update_time;
 
     public String getStudent_name() {
         return student_name;
@@ -97,22 +96,6 @@ public class Disciple implements Cloneable {
         this.student_id = student_id;
     }
 
-    public Timestamp getCreate_time() {
-        return create_time;
-    }
-
-    public void setCreate_time(Timestamp create_time) {
-        this.create_time = create_time;
-    }
-
-    public Timestamp getUpdate_time() {
-        return update_time;
-    }
-
-    public void setUpdate_time(Timestamp update_time) {
-        this.update_time = update_time;
-    }
-
     @Override
     public int hashCode(){
         return id;
@@ -143,9 +126,7 @@ public class Disciple implements Cloneable {
                 + ", 辅导师兄: " + brother
                 + ", 来源: " + come_from
                 + ", 毕业院校: " + graduated_school
-                + ", 日报链接: " + daily_report
-                + ", 报名时间" + create_time
-                + ", 更新时间" + update_time + "]";
+                + ", 日报链接: " + daily_report + "]";
     }
 
     @Override

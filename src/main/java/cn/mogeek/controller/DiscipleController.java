@@ -4,13 +4,15 @@ import cn.mogeek.model.Disciple;
 import cn.mogeek.service.DiscipleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping("disciple")
+@RequestMapping("web")
 public class DiscipleController {
     @Resource
     private DiscipleService discipleService = null;
@@ -34,7 +36,7 @@ public class DiscipleController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        modelAndView.setViewName("/disciple/list");
+        modelAndView.setViewName("web/list");
         return modelAndView;
     }
 
@@ -55,7 +57,7 @@ public class DiscipleController {
         modelAndView.addObject("title", "查找数据");
         modelAndView.addObject("info", "填写学员信息");
         modelAndView.addObject("action", action);
-        modelAndView.setViewName("disciple/query");
+        modelAndView.setViewName("web/query");
         return modelAndView;
     }
 
@@ -80,9 +82,10 @@ public class DiscipleController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        modelAndView.setViewName("/disciple/list");
+        modelAndView.setViewName("web/list");
         return modelAndView;
     }
+
 
     /**
       * @Description: 打开新增数据页面
@@ -100,7 +103,7 @@ public class DiscipleController {
         modelAndView.addObject("title", "插入数据");
         modelAndView.addObject("info", "填写学员信息");
         modelAndView.addObject("action", "adddisciple");
-        modelAndView.setViewName("disciple/insert");
+        modelAndView.setViewName("web/insert");
         return modelAndView;
     }
 
@@ -112,6 +115,7 @@ public class DiscipleController {
       * @Date: 2020/5/11
       */
     @RequestMapping(value = "adddisciple")
+
     public ModelAndView adddisciple(Disciple disciple){
         System.out.println("---------------");
         System.out.println("adddisciple");
@@ -153,7 +157,7 @@ public class DiscipleController {
         System.out.println("update");
         System.out.println("@" + disciple);
         System.out.println("---------------");
-        modelAndView.setViewName("disciple/update");
+        modelAndView.setViewName("web/update");
         return modelAndView;
     }
 

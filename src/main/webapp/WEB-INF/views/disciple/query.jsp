@@ -14,7 +14,8 @@
 </head>
 <body>
 <h2>${info}</h2>
-<form method="post" action="${base}/disciple/${action}">
+<p><a href="/index.jsp">返回菜单</a> </p>
+<form method="post" action="${base}/web/${action}">
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
             <td>id</td>

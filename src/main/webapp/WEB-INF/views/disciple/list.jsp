@@ -15,8 +15,8 @@
 </head>
 <body>
     <h2>学生列表</h2>
-    <p><a href="/disciple/insert">新增学员</a> </p>
-    <div id="flushDIV">
+    <p><a href="/index.jsp">返回菜单</a> </p>
+    <div>
         <table border="1" cellpadding="2" cellspacing="0" table-layout:fixed;>
             <tr>
                 <th>id</th>
@@ -44,9 +44,9 @@
                     <td>${disciple.daily_report}</td>
                     <td>${disciple.slogan}</td>
                     <td>
-                        <a href="/disciple/update?id=${disciple.id}">修改</a>
+                        <a href="/web/update?id=${disciple.id}">修改</a>
                         <br/>
-                        <a href="/disciple/delete?id=${disciple.id}">删除</a>
+                        <a href="/web/delete?id=${disciple.id}">删除</a>
                     </td>
                 </tr>
             </c:forEach>
