@@ -54,62 +54,63 @@ SET FOREIGN_KEY_CHECKS = 1;
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
 |student_name	|名字	|string|		|是|
-|major_subject	|学习方向	|String|		|是|
+|major_subject	|学习方向	|string|		|是|
 |qq_num	|QQ号码	|string|		|是|
-|student_id	|线上学号	|String	|	|是|
-|daily_report	|近期日报链接	|String|		|是|
+|student_id	|线上学号	|string	|	|是|
+|daily_report	|近期日报链接	|string|		|是|
 |graduated_school	|毕业院校	|string|		|  |
-|Brother	|审核师兄	|string|		|  |
+|brother	|审核师兄	|string|		|  |
 |come_from	|了解到学院的渠道	|string	|	|  |
-|Slogan	|口号	|string	|	|  |
+|slogan	|口号	|string	|	|  |
 
 返回参数：
 |字段	|说明	|类型	|备注	|是否必填|
 |---|---|---|---|---|
-|Code|	|Number	|	|是|
-|Data|	|boolean/disicple| | |
+|code|	|number	|	|是|
+|data|	|boolean/disicple| | |
 
 
 修改状态：
 请求地址：put /disciple
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
-|Id	|主键	|Int|	|	是|
+|id	|主键	|int|	|	是|
 |student_name	|名字|	string	|	| |
-|major_subject	|学习方向|	String|	|	|
+|major_subject	|学习方向|	string|	|	|
 |graduated_school	|毕业院校|	string|	|	|
-|Brother	|审核师兄	|string	|	| |
+|brother	|审核师兄	|string	|	| |
 |come_from	|了解到学院的渠道|	string|		| |
-|daily_report	|近期日报链接	|String|	|	|
-|Slogan	|口号	|string	|	| |
+|daily_report	|近期日报链接	|string|	|	|
+|slogan	|口号	|string	|	| |
 |qq_num	|QQ号码	|string	|	|  |
-|student_id	|线上学号	|String|	| |	
+|student_id	|线上学号	|string|	| |	
 
 返回参数：
-字段	说明	类型	备注	是否必填
-Code		Number		是
+|字段	|说明	|类型	|备注	|是否必填|
+|---|---|---|---|---|
+|code|	|number|	|是|
 
 查看学员信息：
 请求地址：get /disciple/{id}
 返回参数：
 |字段	|说明	|类型	|备注	|是否必填|
 |---|---|---|---|---|
-|Code	|	|Number	|	|是|
+|code	|	|number	|	|是|
 |data	|	|disciple|	|	|
 
 data
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
-|Id	|主键	|Int	|	|是|
+|id	|主键	|int	|	|是|
 |student_name	|名字	|string|		|是|
-|major_subject	|学习方向	|String|		|是|
+|major_subject	|学习方向	|string|		|是|
 |graduated_school	|毕业院校	|string|		|是|
-|Brother	|审核师兄	|string|		|是|
+|brother	|审核师兄	|string|		|是|
 |come_from	|了解到学院的渠道	|string|		|是|
-|daily_report	|近期日报链接	|String|		|是|
-|Slogan	|口号	|string|		|是|
+|daily_report	|近期日报链接	|string|		|是|
+|slogan	|口号	|string|		|是|
 |qq_num	|QQ号码	|string|		|是|
-|student_id	|线上学号|	String|		|是|
+|student_id	|线上学号|	string|		|是|
 
 删除学员：
 请求地址：delete /disicple/{id}
@@ -117,5 +118,5 @@ data
 返回参数：
 |字段	|说明	|类型	|备注	|是否必填|
 |---|---|---|---|---|
-|Code|	|	|Number|		|是|
+|code|	|	|number|		|是|
 
