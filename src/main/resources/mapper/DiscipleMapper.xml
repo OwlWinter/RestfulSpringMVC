@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.mogeek.mapper.DiscipleMapper">
+
+    <resultMap id="discipleMap" type="cn.mogeek.model.Disciple">
+        <id property="id" column="id" javaType="int" jdbcType="BIGINT"></id>
+        <result property="student_id" column="student_id" javaType="int" jdbcType="BIGINT"></result>
+        <result property="qq_num" column="qq_num" javaType="int" jdbcType="BIGINT"></result>
+        <result property="student_name" column="student_name" javaType="String" jdbcType="VARCHAR"></result>
+        <result property="slogan" column="slogan" javaType="String" jdbcType="VARCHAR"></result>
+        <result property="major_subject" column="major_subject" javaType="String" jdbcType="VARCHAR"></result>
+        <result property="brother" column="brother" javaType="String" jdbcType="VARCHAR"></result>
+        <result property="come_from" column="come_from" javaType="String" jdbcType="VARCHAR"></result>
+        <result property="graduated_school" column="graduated_school" javaType="String" jdbcType="VARCHAR"></result>
+        <result property="daily_report" column="daily_report" javaType="String" jdbcType="VARCHAR"></result>
+<!--        <result property="create_time" column="create_time" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"></result>
+        <result property="update_time" column="update_time" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"></result>-->
+    </resultMap>
+
+    <select id="query" parameterType="cn.mogeek.model.Disciple" resultMap="discipleMap">
+        SELECT id, student_id, qq_num, student_name, slogan, major_subject, brother, come_from, graduated_school, daily_report
+        FROM registery_info
+        <where>
+            <if test="id neq null and id neq ''">id = #{id}</if>
+            <if test="student_id neq null and student_id neq ''">AND student_id = #{student_id}</if>
+            <if test="student_name neq null and student_name neq ''">AND student_name = #{student_name}</if>
+            <if test="qq_num neq null and qq_num neq ''">AND qq_num = #{qq_num}</if>
+            <if test="major_subject neq null and major_subject neq ''">AND major_subject = #{major_subject}</if>
+            <if test="brother neq null and brother neq ''">AND brother = #{brother}</if>
+            <if test="graduated_school neq null and graduated_school neq ''">AND graduated_school = #{graduated_school}</if>
+            <if test="come_from neq null and come_from neq ''">AND come_from = #{come_from}</if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="cn.mogeek.model.Disciple"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO registery_info (qq_num, student_id, student_name, major_subject, graduated_school,
+            brother, come_from, daily_report, slogan, create_time)
+        VALUES (#{qq_num}, #{student_id}, #{student_name}, #{major_subject}, #{graduated_school},
+            #{brother}, #{come_from}, #{daily_report}, #{slogan}, now())
+    </insert>
+
+    <update id="update" parameterType="cn.mogeek.model.Disciple">
+        UPDATE registery_info
+        <set>
+            <if test="qq_num != null and qq_num != ''"> qq_num = #{qq_num}, </if>
+            <if test="student_id != null and student_id != ''"> student_id = #{student_id}, </if>
+            <if test="student_name != null and student_name != ''"> student_name = #{student_name}, </if>
+            <if test="major_subject != null and major_subject != ''"> major_subject = #{major_subject}, </if>
+            <if test="graduated_school != null and graduated_school != ''"> graduated_school = #{graduated_school}, </if>
+            <if test="brother != null and brother != ''"> brother = #{brother}, </if>
+            <if test="come_from != null and come_from != ''"> come_from = #{come_from}, </if>
+            <if test="daily_report != null and daily_report != ''"> daily_report = #{daily_report}, </if>
+            <if test="slogan != null and slogan != ''"> slogan = #{slogan} </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM registery_info WHERE id = #{id}
+    </delete>
+
+</mapper>
