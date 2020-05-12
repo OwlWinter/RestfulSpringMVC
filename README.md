@@ -36,8 +36,8 @@ CREATE TABLE `registery_info`  (
   `graduated_school` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '毕业院校',
   `daily_report` tinytext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '日报链接',
   `slogan` tinytext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '目标',
-  `brother` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '师兄姓名',
-  `come_from` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '户籍所在地',
+  `brother` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '审核师兄',
+  `come_from` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '了解到学院的渠道',
   `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
@@ -54,28 +54,19 @@ SET FOREIGN_KEY_CHECKS = 1;
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
 |student_name	|名字	|string|		|是|
-|---|---|---|---|---|
 |major_subject	|学习方向	|String|		|是|
-|---|---|---|---|---|
 |qq_num	|QQ号码	|string|		|是|
-|---|---|---|---|---|
 |student_id	|线上学号	|String	|	|是|
-|---|---|---|---|---|
-|daily_report	|近期日报链接	|String		|是|
-|---|---|---|---|---|
+|daily_report	|近期日报链接	|String|		|是|
 |graduated_school	|毕业院校	|string|		|  |
-|---|---|---|---|---|
 |Brother	|审核师兄	|string|		|  |
-|---|---|---|---|---|
 |come_from	|了解到学院的渠道	|string	|	|  |
-|---|---|---|---|---|
 |Slogan	|口号	|string	|	|  |
 
 返回参数：
 |字段	|说明	|类型	|备注	|是否必填|
 |---|---|---|---|---|
 |Code|	|Number	|	|是|
-|---|---|---|---|---|
 |Data|	|boolean/disicple| | |
 
 
@@ -84,23 +75,14 @@ SET FOREIGN_KEY_CHECKS = 1;
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
 |Id	|主键	|Int|	|	是|
-|---|---|---|---|---|
 |student_name	|名字|	string	|	| |
-|---|---|---|---|---|
 |major_subject	|学习方向|	String|	|	|
-|---|---|---|---|---|
 |graduated_school	|毕业院校|	string|	|	|
-|---|---|---|---|---|
 |Brother	|审核师兄	|string	|	| |
-|---|---|---|---|---|
-|come_from	|了解到修真院的渠道|	string|		| |
-|---|---|---|---|---|
+|come_from	|了解到学院的渠道|	string|		| |
 |daily_report	|近期日报链接	|String|	|	|
-|---|---|---|---|---|
 |Slogan	|口号	|string	|	| |
-|---|---|---|---|---|
 |qq_num	|QQ号码	|string	|	|  |
-|---|---|---|---|---|
 |student_id	|线上学号	|String|	| |	
 
 返回参数：
@@ -119,23 +101,14 @@ data
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
 |Id	|主键	|Int	|	|是|
-|---|---|---|---|---|
 |student_name	|名字	|string|		|是|
-|---|---|---|---|---|
 |major_subject	|学习方向	|String|		|是|
-|---|---|---|---|---|
 |graduated_school	|毕业院校	|string|		|是|
-|---|---|---|---|---|
 |Brother	|审核师兄	|string|		|是|
-|---|---|---|---|---|
-|come_from	|了解到修真院的渠道	|string|		|是|
-|---|---|---|---|---|
+|come_from	|了解到学院的渠道	|string|		|是|
 |daily_report	|近期日报链接	|String|		|是|
-|---|---|---|---|---|
 |Slogan	|口号	|string|		|是|
-|---|---|---|---|---|
 |qq_num	|QQ号码	|string|		|是|
-|---|---|---|---|---|
 |student_id	|线上学号|	String|		|是|
 
 删除学员：
