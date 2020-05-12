@@ -1,7 +1,7 @@
 # RestfulSpringMVC
 学习实现一个符合 rest 接口规范的 SpringMVC 项目。
 
-数据库：school
+数据库：school    
 建表 SQL：
 ```
 /*
@@ -48,8 +48,8 @@ CREATE TABLE `registery_info`  (
 SET FOREIGN_KEY_CHECKS = 1;
 ```
 
-接口文档：
-新增学员
+接口文档：    
+新增学员    
 请求地址：post  /disciple
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
@@ -69,8 +69,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 |code|	|number	|	|是|
 |data|	|boolean/disicple| | |
 
+****
 
-修改状态：
+修改状态：  
 请求地址：put /disciple
 |字段	|说明	|类型	|备注	|是否必须|
 |---|---|---|---|---|
@@ -90,7 +91,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 |---|---|---|---|---|
 |code|	|number|	|是|
 
-查看学员信息：
+****
+
+查看学员信息：  
 请求地址：get /disciple/{id}
 返回参数：
 |字段	|说明	|类型	|备注	|是否必填|
@@ -112,9 +115,10 @@ data
 |qq_num	|QQ号码	|string|		|是|
 |student_id	|线上学号|	string|		|是|
 
-删除学员：
-请求地址：delete /disicple/{id}
+****
 
+删除学员：     
+请求地址：delete /disicple/{id}    
 返回参数：
 |字段	|说明	|类型	|备注	|是否必填|
 |---|---|---|---|---|
