@@ -45,7 +45,7 @@
             <td><input type="text" name="brother" value="${old_disciple.brother}"></td>
         </tr>
         <tr>
-            <td>从哪里了解到修真院</td>
+            <td>从哪里了解到学院</td>
             <td><input type="text" name="come_from" value="${old_disciple.come_from}"></td>
         </tr>
         <tr>
