@@ -4,6 +4,8 @@ import cn.mogeek.model.Disciple;
 import cn.mogeek.service.DiscipleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import sun.awt.windows.WBufferStrategy;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @ClassName JsonDiscipleController
+ * @ClassName RestfulController
  * @Description TODO
  * @Author owlwinter
  * @Date 2020/5/12 15:18
@@ -24,6 +26,36 @@ import java.util.Map;
 public class RestfulController {
     @Resource
     private DiscipleService service = null;
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> getPage(int page, int per_page){
+        int page_size = 10;
+        Map<String, Object> stringObjectMap = new HashMap<>();
+        List<Disciple> buffer_disciple_list = null;
+        try {
+            buffer_disciple_list = service.query(new Disciple());
+
+            per_page = (buffer_disciple_list.size() + page_size - 1)/page_size;
+            List<Disciple> discipleList = null;
+            if (page*page_size > buffer_disciple_list.size()){
+                discipleList = buffer_disciple_list.subList((page-1)*page_size, buffer_disciple_list.size());
+            }else {
+                discipleList = buffer_disciple_list.subList((page-1)*page_size, page*page_size);
+            }
+
+            stringObjectMap.put("code", 200);
+            stringObjectMap.put("data", discipleList);
+            stringObjectMap.put("count", buffer_disciple_list.size());
+            stringObjectMap.put("page", page);
+            stringObjectMap.put("per_page", per_page);
+        } catch (Exception e) {
+            stringObjectMap.put("code", 500);
+            e.printStackTrace();
+        }
+
+
+        return stringObjectMap;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object> addDisciple(@RequestBody Disciple disciple){
@@ -81,8 +113,7 @@ public class RestfulController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
-    public Map<String, Object> deletedisciple(@PathVariable("id") Integer id){
+    public @ResponseBody Map<String, Object> deletedisciple(@PathVariable("id") Integer id){
         Map<String, Object> stringObjectMap = new HashMap<>();
         try {
             boolean status = service.delete(id);
@@ -94,7 +125,5 @@ public class RestfulController {
         }
         return stringObjectMap;
     }
-
-
 
 }
