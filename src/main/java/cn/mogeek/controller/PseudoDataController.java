@@ -34,8 +34,9 @@ public class PseudoDataController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ModelAndView deletedisciple(@PathVariable("id") Integer id){
+    public ModelAndView deleteDisciple(@PathVariable("id") Integer id){
         ModelAndView modelAndView = new ModelAndView("pseudo_data/delete");
+        modelAndView.addObject("id", id);
         return modelAndView;
     }
 

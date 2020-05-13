@@ -31,7 +31,6 @@ public class DiscipleServiceImpl implements DiscipleService {
     @Override
     public boolean update(Disciple disciple) throws Exception {
         int result = discipleMapper.update(disciple);
-        System.out.println("discipleMapper.update");
         return result == 1 ? true : false;
     }
 
