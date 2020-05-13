@@ -116,7 +116,6 @@ public class WebController {
       * @Date: 2020/5/11
       */
     @RequestMapping(value = "adddisciple")
-
     public ModelAndView adddisciple(Disciple disciple){
         System.out.println("---------------");
         System.out.println("adddisciple");
