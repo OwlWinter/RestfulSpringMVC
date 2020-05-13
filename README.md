@@ -124,3 +124,20 @@ data
 |---|---|---|---|---|
 |code|	|	|number|		|是|
 
+****
+
+分页数据：(get)    
+请求地址：/disciple/?page=1&per_page=3    
+返回参数：    
+|字段	|说明	|类型	|备注	|是否必填|
+|---|---|---|---|---|
+|code	|	|number	|	|是|
+|data	|包含 disciple 的数组|array|	|	|  |
+|count	|	|number	|	|  |
+|page	|	|number	|	|  |
+|per_page|	|number	|	|  |    
+
+data
+|字段	|说明	|类型	|备注	|是否必须|
+|---|---|---|---|---|
+|-|   |disciple|	|  |
