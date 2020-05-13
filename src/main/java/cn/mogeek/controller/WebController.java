@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("web")
-public class DiscipleController {
+public class WebController {
     @Resource
     private DiscipleService discipleService = null;
 
@@ -32,6 +32,7 @@ public class DiscipleController {
         ModelAndView modelAndView = new ModelAndView();
         try {
             List<Disciple> discipleList = discipleService.query(new Disciple());
+            System.out.println(discipleList.get(0));
             modelAndView.addObject("disciplelist", discipleList);
         } catch (Exception e) {
             e.printStackTrace();
