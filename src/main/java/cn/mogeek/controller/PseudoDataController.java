@@ -22,24 +22,35 @@ import java.util.Map;
 @RequestMapping("/pseudodata")
 public class PseudoDataController {
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ModelAndView toDelete(@PathVariable("id") Integer id){
+        System.out.println("---------------");
+        System.out.println("/pseudodata/{id}");
+        System.out.println("@" + id);
+        System.out.println("---------------");
+        ModelAndView modelAndView = new ModelAndView("redirect:delete");
+        return modelAndView;
+    }
+
+    @RequestMapping("/delete")
+    public String delete(){
+        System.out.println("---------------");
+        System.out.println("/pseudodata/delete");
+        System.out.println("---------------");
+        return "pseudo_data/delete";
+    }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ModelAndView queryById(@PathVariable("id") Integer id){
         System.out.println("---------------");
-        System.out.println("/search/{id}");
+        System.out.println("/pseudodata/{id}");
         System.out.println("@" + id);
         System.out.println("---------------");
         ModelAndView modelAndView = new ModelAndView("pseudo_data/disciple");
         modelAndView.addObject("id", id);
         return modelAndView;
     }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ModelAndView deleteDisciple(@PathVariable("id") Integer id){
-        ModelAndView modelAndView = new ModelAndView("pseudo_data/delete");
-        modelAndView.addObject("id", id);
-        return modelAndView;
-    }
-
 
 
 }
