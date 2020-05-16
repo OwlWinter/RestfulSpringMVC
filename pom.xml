@@ -222,7 +222,7 @@
   </repositories>
 
   <build>
-    <finalName>testSpringMVC</finalName>
+    <finalName>RestfulSpringMVC</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
