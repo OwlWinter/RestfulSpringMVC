@@ -51,6 +51,10 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
-
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>message</value>
+        </property>
+    </bean>
 
 </beans>
