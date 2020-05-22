@@ -16,7 +16,7 @@ public class SpringContextTest {
     //@SuppressWarnings("resource")
     public static void main(String[] args) throws Exception{
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-mybatis.xml");
-        String message = context.getMessage("msg.text", null, Locale.getDefault());
+        String message = context.getMessage("post.success", null, Locale.getDefault());
         System.out.println(message);
     }
 }
