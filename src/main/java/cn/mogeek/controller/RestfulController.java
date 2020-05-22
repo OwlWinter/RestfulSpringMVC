@@ -72,10 +72,10 @@ public class RestfulController {
             Integer id = disciple.getId();
             response.put("code", 201);
             response.put("data", disciple);
-            response.put("msg", messageSource.getMessage("post.success", null, Locale.US));
+            response.put("msg", messageSource.getMessage("post.success", null, Locale.getDefault()));
         }catch (DuplicateKeyException exception){
             response.put("code", 400);
-            response.put("msg", messageSource.getMessage("post.student_id_repeatedly", null, Locale.US));
+            response.put("msg", messageSource.getMessage("post.student_id_repeatedly", null, Locale.getDefault()));
         }catch (Exception e) {
             e.printStackTrace();
             response.put("code", 400);
