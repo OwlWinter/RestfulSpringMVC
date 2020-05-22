@@ -2,6 +2,9 @@ package cn.mogeek.controller;
 
 import cn.mogeek.model.Disciple;
 import cn.mogeek.service.DiscipleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -24,8 +28,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/disciple")
 public class RestfulController {
-    @Resource
-    private DiscipleService service = null;
+    @Autowired
+    private DiscipleService service;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> getPage(int page, int per_page){
@@ -64,10 +71,15 @@ public class RestfulController {
             service.insert(disciple);
             Integer id = disciple.getId();
             response.put("code", 201);
-            response.put("data", id);
-        } catch (Exception e) {
+            response.put("data", disciple);
+            response.put("msg", messageSource.getMessage("post.success", null, Locale.US));
+        }catch (DuplicateKeyException exception){
+            response.put("code", 400);
+            response.put("msg", messageSource.getMessage("post.student_id_repeatedly", null, Locale.US));
+        }catch (Exception e) {
             e.printStackTrace();
             response.put("code", 400);
+            response.put("msg", messageSource.getMessage("post.fail", null, Locale.getDefault()));
         }
         return response;
     }
