@@ -47,4 +47,20 @@ public class DiscipleServiceImplTest {
         }
     }
 
+    @Test
+    public void insetResponse() throws Exception{
+        Disciple disciple = new Disciple();
+        disciple.setMajor_subject("无限奥义循环");
+        disciple.setCome_from("英国");
+        disciple.setDaily_report("https://baike.baidu.com/item/%E5%A5%87%E5%BC%82%E5%8D%9A%E5%A3%AB/2492942");
+        disciple.setBrother("古一法师");
+        disciple.setSlogan("多玛姆，我是来找你谈判的！");
+        disciple.setGraduated_school("格林威治村");
+        disciple.setStudent_id(667);
+        disciple.setQq_num(666);
+        disciple.setStudent_name("xxx");
+        discipleService.insert(disciple);
+        System.out.println("==========\n" + disciple);
+    }
+
 }
