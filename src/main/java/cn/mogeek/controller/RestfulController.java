@@ -2,6 +2,7 @@ package cn.mogeek.controller;
 
 import cn.mogeek.model.Disciple;
 import cn.mogeek.service.DiscipleService;
+import org.apache.commons.el.GreaterThanOperator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DuplicateKeyException;
@@ -109,7 +110,6 @@ public class RestfulController {
       */
     @RequestMapping(value = "", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object> addDisciple(@RequestBody Disciple disciple){
-        Map<String, Object> response = new HashMap<>();
 
         if (disciple.getStudent_id() == null){
             /*分支处理：缺少字段*/
@@ -141,16 +141,30 @@ public class RestfulController {
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public @ResponseBody Map<String, Object> updateDisciple(@RequestBody Disciple disciple){
-        Map<String, Object> response = new HashMap<>();
-        try {
-            boolean status = service.update(disciple);
-            int code = status ? 201 : 404;
-            response.put("code", code);
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.put("code", 500);
+
+        if (disciple.getId() == null){
+            return RestResult.set(400,
+                    messageSource.getMessage("Missing_field", new String[]{"id"}, Locale.getDefault()));
+        }else {
+            try {
+                boolean status = service.update(disciple);
+                if (status){
+                    return RestResult.set(201,
+                            messageSource.getMessage("update.Success", null, Locale.getDefault()));
+                }else {
+                    return RestResult.set(204,
+                            messageSource.getMessage("ID_does_not_exist",
+                                    new String[]{"id", disciple.getId().toString()}, Locale.getDefault()));
+                }
+            }catch (DuplicateKeyException e){
+                return RestResult.set(400,
+                        messageSource.getMessage("Student_id_repeatedly",
+                                new String[]{disciple.getStudent_id().toString()}, Locale.getDefault()));
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        return response;
+        return RestResult.set(500, messageSource.getMessage("update.Fail", null, Locale.getDefault()));
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
