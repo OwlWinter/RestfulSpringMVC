@@ -139,6 +139,13 @@ public class RestfulController {
                 messageSource.getMessage("insert.Fail", null, Locale.getDefault()));
     }
 
+    /**
+      * @Description: 根据 id 更新数据
+      * @Param: [disciple]
+      * @return: java.util.Map<java.lang.String,java.lang.Object>
+      * @Author: owlwinter
+      * @Date: 2020/5/25
+      */
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public @ResponseBody Map<String, Object> updateDisciple(@RequestBody Disciple disciple){
 
@@ -167,6 +174,13 @@ public class RestfulController {
         return RestResult.set(500, messageSource.getMessage("update.Fail", null, Locale.getDefault()));
     }
 
+    /**
+      * @Description: 根据 id 查询数据
+      * @Param: [id]
+      * @return: java.util.Map<java.lang.String,java.lang.Object>
+      * @Author: owlwinter
+      * @Date: 2020/5/25
+      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> queryById(@PathVariable("id") Integer id){
         System.out.println("---------------");
@@ -176,21 +190,28 @@ public class RestfulController {
         Disciple disciple = new Disciple();
         disciple.setId(id);
 
-        Map<String, Object> stringObjectMap = new HashMap<>();
         try {
             List<Disciple> discipleList = service.query(disciple);
             int count = discipleList.size();
             disciple = discipleList.get(0);
-            int code = count == 1 ? 200 : 404;
-            stringObjectMap.put("code", code);
             if (count == 1){
-                stringObjectMap.put("disciple", disciple);
+                Map<String, Object> data = new HashMap<>();
+                data.put("disciple", disciple);
+                return RestResult.set(200,
+                        messageSource.getMessage("query_by_id.Success", null, Locale.getDefault()), data);
+            }else {
+                return RestResult.set(204,
+                        messageSource.getMessage("ID_does_not_exist",
+                                new String[]{"id", id.toString()}, Locale.getDefault()));
             }
-        } catch (Exception e) {
+        }catch (IndexOutOfBoundsException e){
+            return RestResult.set(204,
+                    messageSource.getMessage("ID_does_not_exist",
+                            new String[]{"id", id.toString()}, Locale.getDefault()));
+        }catch (Exception e) {
             e.printStackTrace();
-            stringObjectMap.put("code", 500);
         }
-        return stringObjectMap;
+        return RestResult.set(500, messageSource.getMessage("query_by_id.Fail", null, Locale.getDefault()));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
