@@ -214,18 +214,29 @@ public class RestfulController {
         return RestResult.set(500, messageSource.getMessage("query_by_id.Fail", null, Locale.getDefault()));
     }
 
+    /**
+      * @Description: 根据 id 删除数据
+      * @Param: [id]
+      * @return: java.util.Map<java.lang.String,java.lang.Object>
+      * @Author: owlwinter
+      * @Date: 2020/5/25
+      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody Map<String, Object> deletedisciple(@PathVariable("id") Integer id){
-        Map<String, Object> stringObjectMap = new HashMap<>();
         try {
             boolean status = service.delete(id);
-            int code = status ? 204 : 404;
-            stringObjectMap.put("code", code);
+            if (status){
+                return RestResult.set(204,
+                        messageSource.getMessage("delete.Success", null, Locale.getDefault()));
+            }else {
+                return RestResult.set(410,
+                        messageSource.getMessage("ID_does_not_exist",
+                                new String[]{"id", id.toString()}, Locale.getDefault()));
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            stringObjectMap.put("code", 500);
         }
-        return stringObjectMap;
+        return RestResult.set(500, messageSource.getMessage("delete.Fail", null, Locale.getDefault()));
     }
 
 }
