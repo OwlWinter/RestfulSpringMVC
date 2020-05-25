@@ -95,29 +95,48 @@ public class RestfulController {
             }
         }catch (Exception e) {
             e.printStackTrace();
-            return RestResult.set(500, messageSource.getMessage("page.Fail",
-                    null, Locale.getDefault()));
         }
+        return RestResult.set(500, messageSource.getMessage("page.Fail",
+                null, Locale.getDefault()));
     }
 
+    /**
+      * @Description: POST 新增学员
+      * @Param: [disciple]
+      * @return: java.util.Map<java.lang.String,java.lang.Object>
+      * @Author: owlwinter
+      * @Date: 2020/5/25
+      */
     @RequestMapping(value = "", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object> addDisciple(@RequestBody Disciple disciple){
         Map<String, Object> response = new HashMap<>();
-        try {
-            service.insert(disciple);
-            Integer id = disciple.getId();
-            response.put("code", 201);
-            response.put("data", disciple);
-            response.put("msg", messageSource.getMessage("post.success", null, Locale.getDefault()));
-        }catch (DuplicateKeyException exception){
-            response.put("code", 400);
-            response.put("msg", messageSource.getMessage("post.student_id_repeatedly", null, Locale.getDefault()));
-        }catch (Exception e) {
-            e.printStackTrace();
-            response.put("code", 400);
-            response.put("msg", messageSource.getMessage("post.fail", null, Locale.getDefault()));
+
+        if (disciple.getStudent_id() == null){
+            /*分支处理：缺少字段*/
+            return RestResult.set(400, messageSource.getMessage("Missing_field",
+                    new String[]{"student_id"}, Locale.getDefault()));
+        }else if (disciple.getStudent_name() == null){
+            return RestResult.set(400, messageSource.getMessage("Missing_field",
+                    new String[]{"student_name"}, Locale.getDefault()));
+        }else {
+            /*分支处理：新增数据、异常处理*/
+            try {
+                service.insert(disciple);
+                Map<String, Object> data = new HashMap<>();
+                data.put("disicple", disciple);
+                return RestResult.set(201,
+                        messageSource.getMessage("insert.Success",
+                                null, Locale.getDefault()), data);
+            }catch (DuplicateKeyException exception){
+                return RestResult.set(400,
+                        messageSource.getMessage("Student_id_repeatedly",
+                                new String[]{disciple.getStudent_id().toString()}, Locale.getDefault()));
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        return response;
+        return RestResult.set(500,
+                messageSource.getMessage("insert.Fail", null, Locale.getDefault()));
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
