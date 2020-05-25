@@ -51,93 +51,100 @@ SET FOREIGN_KEY_CHECKS = 1;
 接口文档：    
 新增学员：(post)       
 请求地址：/disciple
-|字段	|说明	|类型	|备注	|是否必须|
-|---|---|---|---|---|
-|student_name	|名字	|string|		|是|
-|major_subject	|学习方向	|string|		|是|
-|qq_num	|QQ号码	|string|		|是|
-|student_id	|线上学号	|string	|	|是|
-|daily_report	|近期日报链接	|string|		|是|
-|graduated_school	|毕业院校	|string|		|  |
-|brother	|审核师兄	|string|		|  |
-|come_from	|了解到学院的渠道	|string	|	|  |
-|slogan	|口号	|string	|	|  |
+|字段    |说明	|类型	|备注	|是否必须|    
+|---|---|---|---|---|  
+|student_name	|名字	|string|	|是|  
+|major_subject	|学习方向	|string|	|是|  
+|qq_num	|QQ号码	|string|		|是|  
+|student_id	|线上学号	|string	|	|是|  
+|daily_report	|近期日报链接	|string|	|是|  
+|graduated_school	|毕业院校	|string|	|  |  
+|brother	|审核师兄	|string|		|  |  
+|come_from	|了解到学院的渠道	|string	|	|  |  
+|slogan	|口号	|string	|	|  |  
 
-返回参数：
-|字段	|说明	|类型	|备注	|是否必填|
-|---|---|---|---|---|
-|code|	|number	|	|是|
-|data|	|boolean/disicple| | |
+返回参数：  
+|字段	|说明	|类型	|备注	|是否必填|  
+|---|---|---|---|---|  
+|code|	|number	|	|是|  
+|msg|    |string|	|是|  
+|data|    |null/disciple|    |是|  
 
 ****
 
 修改状态：(put)     
-请求地址：/disciple
-|字段	|说明	|类型	|备注	|是否必须|
-|---|---|---|---|---|
-|id	|主键	|int|	|	是|
-|student_name	|名字|	string	|	| |
-|major_subject	|学习方向|	string|	|	|
-|graduated_school	|毕业院校|	string|	|	|
-|brother	|审核师兄	|string	|	| |
-|come_from	|了解到学院的渠道|	string|		| |
-|daily_report	|近期日报链接	|string|	|	|
-|slogan	|口号	|string	|	| |
-|qq_num	|QQ号码	|string	|	|  |
-|student_id	|线上学号	|string|	| |	
+请求地址：/disciple  
+|字段	|说明	|类型	|备注	|是否必须|  
+|---|---|---|---|---|  
+|id	|主键	|int|	|	是|  
+|student_name	|名字|	string	|	| |  
+|major_subject	|学习方向|	string|	|	|  
+|graduated_school	|毕业院校|	string|	|	|  
+|brother	|审核师兄	|string	|	| |  
+|come_from	|了解到学院的渠道|	string|		| |  
+|daily_report	|近期日报链接	|string|	|	|  
+|slogan	|口号	|string	|	| |  
+|qq_num	|QQ号码	|string	|	|  |   
+|student_id	|线上学号	|string|	| |	  
 
-返回参数：
-|字段	|说明	|类型	|备注	|是否必填|
-|---|---|---|---|---|
-|code|	|number|	|是|
+返回参数：  
+|字段	|说明	|类型	|备注	|是否必填|  
+|---|---|---|---|---|  
+|code|	|number|	|是|  
+|msg|    |string|    |是|  
+|data|    |null|    |是|   
 
 ****
 
-查看学员信息：(get)     
+查看学员信息：(get)       
 请求地址：/disciple/{id}   
-返回参数：
-|字段	|说明	|类型	|备注	|是否必填|
-|---|---|---|---|---|
-|code	|	|number	|	|是|
-|data	|	|disciple|	|	|
+返回参数：  
+|字段	|说明	|类型	|备注	|是否必填|  
+|---|---|---|---|---|  
+|code	|	|number	|	|是|  
+|msg|    |string|    |是|  
+|data	|	|null/disciple|	|是|  
 
-data
-|字段	|说明	|类型	|备注	|是否必须|
-|---|---|---|---|---|
-|id	|主键	|int	|	|是|
-|student_name	|名字	|string|		|是|
-|major_subject	|学习方向	|string|		|是|
-|graduated_school	|毕业院校	|string|		|是|
-|brother	|审核师兄	|string|		|是|
-|come_from	|了解到学院的渠道	|string|		|是|
-|daily_report	|近期日报链接	|string|		|是|
-|slogan	|口号	|string|		|是|
-|qq_num	|QQ号码	|string|		|是|
-|student_id	|线上学号|	string|		|是|
+data  
+|字段	|说明	|类型	|备注	|是否必须|  
+|---|---|---|---|---|  
+|id	|主键	|int	|	|是|  
+|student_name	|名字	|string|		|是|  
+|major_subject	|学习方向	|string|		|是|  
+|graduated_school	|毕业院校	|string|		|是|  
+|brother	|审核师兄	|string|		|是|  
+|come_from	|了解到学院的渠道	|string|		|是|  
+|daily_report	|近期日报链接	|string|		|是|  
+|slogan	|口号	|string|		|是|  
+|qq_num	|QQ号码	|string|		|是|  
+|student_id	|线上学号|	string|		|是|  
 
 ****
 
 删除学员：(delete)       
 请求地址：/disicple/{id}    
-返回参数：
-|字段	|说明	|类型	|备注	|是否必填|
-|---|---|---|---|---|
-|code|	|number|   |是|
+返回参数：  
+|字段	|说明	|类型	|备注	|是否必填|  
+|---|---|---|---|---|  
+|code|	|number|   |是|  
+|msg|    |string|    |是|  
+|data|    |null|    |是|  
 
 ****
 
 分页数据：(get)    
-请求地址：/disciple/?page=1&per_page=3    
+请求地址：/disciple/?page=1&page_size=10    
 返回参数：    
-|字段	|说明	|类型	|备注	|是否必填|
-|---|---|---|---|---|
-|code	|	|number	|	|是|
-|data	|包含 disciple 的数组|array|	|	|  |
-|count	|	|number	|	|  |
-|page	|	|number	|	|  |
-|per_page|	|number	|	|  |    
+|字段	|说明	|类型	|备注	|是否必填|  
+|---|---|---|---|---|  
+|code	|	|number	|	|是|  
+|data	|   |null/json|	| 是 |  
 
-data
-|字段	|说明	|类型	|备注	|是否必须|
-|---|---|---|---|---|
-|-|   |disciple|	|  |
+
+data  
+|字段	|说明	|类型	|备注	|是否必须|  
+|---|---|---|---|---|  
+|list|   |array|disciple object| 是 |   
+|count    |	|number	|	| 是 |  
+|page	|	|number	|	| 是 |  
+|per_page|	|number	|	| 是 |     
