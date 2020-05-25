@@ -103,7 +103,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 |---|---|---|---|---|  
 |code	|	|number	|	|是|  
 |msg|    |string|    |是|  
-|data	|	|null/disciple|	|	|  
+|data	|	|null/disciple|	|是|  
 
 data  
 |字段	|说明	|类型	|备注	|是否必须|  
@@ -138,13 +138,13 @@ data
 |字段	|说明	|类型	|备注	|是否必填|  
 |---|---|---|---|---|  
 |code	|	|number	|	|是|  
-|data	|   |json|	|	|  |  
+|data	|   |null/json|	|	| 是 |  
 
 
 data  
 |字段	|说明	|类型	|备注	|是否必须|  
 |---|---|---|---|---|  
-|list|   |array|disciple object|  |   
-|count    |	|number	|	|  |  
-|page	|	|number	|	|  |  
-|per_page|	|number	|	|  |     
+|list|   |array|disciple object| 是 |   
+|count    |	|number	|	| 是 |  
+|page	|	|number	|	| 是 |  
+|per_page|	|number	|	| 是 |     
