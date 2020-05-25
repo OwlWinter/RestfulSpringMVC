@@ -34,34 +34,70 @@ public class RestfulController {
     @Autowired
     private MessageSource messageSource;
 
+    /**
+      * @Description: 数据分页查询，可自定义一页数据量
+      * @Param: [page, page_size]
+      * @return: java.util.Map<java.lang.String,java.lang.Object>
+      * @Author: owlwinter
+      * @Date: 2020/5/25
+      */
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public @ResponseBody Map<String, Object> getPage(int page, int per_page){
-        int page_size = 10;
-        Map<String, Object> stringObjectMap = new HashMap<>();
+    public @ResponseBody Map<String, Object> getPage(int page, int page_size){
+        int per_page;
+        Map<String, Object> data = new HashMap<>();
         List<Disciple> buffer_disciple_list = null;
+
         try {
             buffer_disciple_list = service.query(new Disciple());
-
             per_page = (buffer_disciple_list.size() + page_size - 1)/page_size;
             List<Disciple> discipleList = null;
-            if (page*page_size > buffer_disciple_list.size()){
-                discipleList = buffer_disciple_list.subList((page-1)*page_size, buffer_disciple_list.size());
+            if (buffer_disciple_list.size() == 0){
+                /*分支处理：数据库为空*/
+                data.put("list", null);
+                data.put("count", 0);
+                data.put("page", 0);
+                data.put("per_page", 0);
+                return RestResult.set(204,  messageSource.getMessage("Empty_list",
+                        null, Locale.getDefault()), data);
+            }else if (page <= 0 || page_size <= 0){
+                /*分支处理：参数有误*/
+                String field = page > 0 ? "page_size" : "page";
+                data.put("count", buffer_disciple_list.size());
+                data.put("page", page);
+                data.put("per_page", per_page);
+                data.put("list", null);
+                return RestResult.set(400, messageSource.getMessage("page.Err_value",
+                        new String[]{field, String.valueOf(page > 0 ? page_size : page)}, Locale.getDefault()), data);
+            }else if ((page - 1)*page_size > buffer_disciple_list.size()){
+                /*分支处理：请求数据超出数据库范围*/
+                data.put("count", buffer_disciple_list.size());
+                data.put("page", page);
+                data.put("per_page", per_page);
+                data.put("list", null);
+                return RestResult.set(400, messageSource.getMessage("page.No_more",
+                        null, Locale.getDefault()), data);
+
             }else {
-                discipleList = buffer_disciple_list.subList((page-1)*page_size, page*page_size);
+                /*分支处理：返回请求数据*/
+                if (page*page_size > buffer_disciple_list.size()){
+                    discipleList = buffer_disciple_list.subList((page-1)*page_size, buffer_disciple_list.size());
+                }else {
+                    discipleList = buffer_disciple_list.subList((page-1)*page_size, page*page_size);
+                }
+
+                data.put("list", discipleList);
+                data.put("count", buffer_disciple_list.size());
+                data.put("page", page);
+                data.put("per_page", per_page);
+                return RestResult.set(200, messageSource.getMessage("page.Success",
+                        null, Locale.getDefault()), data);
+
             }
-
-            stringObjectMap.put("code", 200);
-            stringObjectMap.put("data", discipleList);
-            stringObjectMap.put("count", buffer_disciple_list.size());
-            stringObjectMap.put("page", page);
-            stringObjectMap.put("per_page", per_page);
-        } catch (Exception e) {
-            stringObjectMap.put("code", 500);
+        }catch (Exception e) {
             e.printStackTrace();
+            return RestResult.set(500, messageSource.getMessage("page.Fail",
+                    null, Locale.getDefault()));
         }
-
-
-        return stringObjectMap;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
