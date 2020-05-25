@@ -138,7 +138,7 @@ data
 |字段	|说明	|类型	|备注	|是否必填|  
 |---|---|---|---|---|  
 |code	|	|number	|	|是|  
-|data	|   |null/json|	|	| 是 |  
+|data	|   |null/json|	| 是 |  
 
 
 data  
