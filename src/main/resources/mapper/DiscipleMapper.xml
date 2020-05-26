@@ -7,8 +7,8 @@
 
     <resultMap id="discipleMap" type="cn.mogeek.model.Disciple">
         <id property="id" column="id" javaType="int" jdbcType="BIGINT"></id>
-        <result property="student_id" column="student_id" javaType="int" jdbcType="BIGINT"></result>
-        <result property="qq_num" column="qq_num" javaType="int" jdbcType="BIGINT"></result>
+        <result property="student_id" column="student_id" javaType="String" jdbcType="VARCHAR"></result>
+        <result property="qq_num" column="qq_num" javaType="String" jdbcType="VARCHAR"></result>
         <result property="student_name" column="student_name" javaType="String" jdbcType="VARCHAR"></result>
         <result property="slogan" column="slogan" javaType="String" jdbcType="VARCHAR"></result>
         <result property="major_subject" column="major_subject" javaType="String" jdbcType="VARCHAR"></result>
