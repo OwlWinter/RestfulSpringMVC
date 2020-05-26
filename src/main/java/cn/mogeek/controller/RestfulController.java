@@ -130,7 +130,7 @@ public class RestfulController {
             }catch (DuplicateKeyException exception){
                 return RestResult.set(400,
                         messageSource.getMessage("Student_id_repeatedly",
-                                new String[]{disciple.getStudent_id().toString()}, Locale.getDefault()));
+                                new String[]{disciple.getStudent_id()}, Locale.getDefault()));
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -166,7 +166,7 @@ public class RestfulController {
             }catch (DuplicateKeyException e){
                 return RestResult.set(400,
                         messageSource.getMessage("Student_id_repeatedly",
-                                new String[]{disciple.getStudent_id().toString()}, Locale.getDefault()));
+                                new String[]{disciple.getStudent_id()}, Locale.getDefault()));
             }catch (Exception e) {
                 e.printStackTrace();
             }

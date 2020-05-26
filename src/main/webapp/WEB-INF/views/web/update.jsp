@@ -25,12 +25,12 @@
 
         <tr>
             <td>QQ号码</td>
-            <td><input type="number" name="qq_num" value="${old_disciple.qq_num}"></td>
+            <td><input type="text" name="qq_num" value="${old_disciple.qq_num}"></td>
         </tr>
 
         <tr>
             <td>学号</td>
-            <td><input type="number" name="student_id" value="${old_disciple.student_id}"></td>
+            <td><input type="text" name="student_id" value="${old_disciple.student_id}"></td>
         </tr>
         <tr>
             <td>科目</td>

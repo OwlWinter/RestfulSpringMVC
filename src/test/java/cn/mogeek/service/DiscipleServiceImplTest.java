@@ -37,10 +37,10 @@ public class DiscipleServiceImplTest {
         }
 
         long num;
-        for (int i = 1; i <= 10; i ++){
+        for (int i = 1; i <= 100; i ++){
             num = System.currentTimeMillis();
-            temp.setQq_num((int)(num % 100000));
-            temp.setStudent_id((int)(num % 10000));
+            temp.setQq_num(String.valueOf(num % 100000));
+            temp.setStudent_id(String.valueOf(num % 10000));
             temp.setStudent_name("奇异博士-NO:" + i);
             int ass = discipleService.insert(temp);
             Assert.assertTrue(ass != -1);
@@ -56,8 +56,8 @@ public class DiscipleServiceImplTest {
         disciple.setBrother("古一法师");
         disciple.setSlogan("多玛姆，我是来找你谈判的！");
         disciple.setGraduated_school("格林威治村");
-        disciple.setStudent_id(667);
-        disciple.setQq_num(666);
+        disciple.setStudent_id("667");
+        disciple.setQq_num("666");
         disciple.setStudent_name("xxx");
         discipleService.insert(disciple);
         System.out.println("==========\n" + disciple);

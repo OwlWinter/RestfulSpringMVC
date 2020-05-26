@@ -9,12 +9,12 @@ public class Disciple implements Cloneable , Serializable {
      * 姓名 主修方向 毕业院校 师兄 来源 日报 目标
      */
     private String student_name, major_subject, graduated_school,
-            brother, come_from, daily_report, slogan;
+            brother, come_from, daily_report, slogan, qq_num, student_id;
 
     /**
      * id 为主键
      */
-    private Integer id, qq_num, student_id;
+    private Integer id;
 
     public String getStudent_name() {
         return student_name;
@@ -80,19 +80,19 @@ public class Disciple implements Cloneable , Serializable {
         this.id = id;
     }
 
-    public Integer getQq_num() {
+    public String getQq_num() {
         return qq_num;
     }
 
-    public void setQq_num(Integer qq_num) {
+    public void setQq_num(String qq_num) {
         this.qq_num = qq_num;
     }
 
-    public Integer getStudent_id() {
+    public String getStudent_id() {
         return student_id;
     }
 
-    public void setStudent_id(Integer student_id) {
+    public void setStudent_id(String student_id) {
         this.student_id = student_id;
     }
 
